@@ -1,0 +1,32 @@
+module.exports = {
+  displayName: 'Unit Tests',
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  moduleFileExtensions: ['js', 'json', 'ts'],
+  rootDir: '.',
+  testRegex: '.*\\.spec\\.ts$',
+  transform: {
+    '^.+\\.(t|j)s$': 'ts-jest',
+  },
+  collectCoverageFrom: [
+    'src/**/*.(t|j)s',
+    '!src/**/*.spec.ts',
+    '!src/**/*.interface.ts',
+    '!src/**/*.dto.ts',
+    '!src/**/*.entity.ts',
+    '!src/main.ts',
+    '!src/**/*.module.ts',
+  ],
+  coverageDirectory: './coverage',
+  coverageReporters: ['text', 'lcov', 'html'],
+  moduleNameMapper: {
+    '^@application/(.*)$': '<rootDir>/src/application/$1',
+    '^@core/(.*)$': '<rootDir>/src/core/$1',
+    '^@generated/(.*)$': '<rootDir>/generated/$1',
+    '^@infrastructure/(.*)$': '<rootDir>/src/infrastructure/$1',
+    '^@presentation/(.*)$': '<rootDir>/src/presentation/$1',
+    '^@shared/(.*)$': '<rootDir>/src/shared/$1',
+  },
+  setupFilesAfterEnv: ['<rootDir>/src/test/jest-setup.ts'],
+  testTimeout: 30000,
+};
